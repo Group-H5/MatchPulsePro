@@ -9,7 +9,8 @@ const intlMiddleware = createIntlMiddleware(routing);
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith('/matches')) {
+  const matchPulsePublicPaths = ['/matches', '/nba', '/world-cup', '/insights'];
+  if (matchPulsePublicPaths.some((path) => pathname.startsWith(path))) {
     const response = NextResponse.next();
     response.headers.set('x-pathname', request.nextUrl.pathname);
     response.headers.set('x-url', request.url);
