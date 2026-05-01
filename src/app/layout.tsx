@@ -5,6 +5,8 @@ import { getLocale, setRequestLocale } from 'next-intl/server';
 import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
+import Link from 'next/link';
+import PulseIndicator from '@/components/PulseIndicator';
 import { locales } from '@/config/locale';
 import { UtmCapture } from '@/shared/blocks/common/utm-capture';
 import { getAllConfigs } from '@/shared/models/config';
@@ -108,6 +110,9 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <title>MatchPulse.pro | AI-Powered Real-time Sports Insights</title>
+        <meta name="description" content="Experience the pulse of the game. Real-time NBA & World Cup 2026 insights driven by advanced AI logic." />
+        <meta name="keywords" content="NBA live, World Cup 2026, AI Sports Prediction, MatchPulse, Live Scores" />
         <link rel="icon" href={envConfigs.app_favicon} />
         <link rel="alternate icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -146,7 +151,7 @@ export default async function RootLayout({
         {/* inject customer service head scripts */}
         {customerServiceHeadScripts}
       </head>
-      <body suppressHydrationWarning className="overflow-x-hidden">
+      <body suppressHydrationWarning className="overflow-x-hidden bg-brand-dark text-gray-100 antialiased">
         <NextTopLoader
           color="#6466F1"
           initialPosition={0.08}
@@ -159,6 +164,29 @@ export default async function RootLayout({
         />
 
         <UtmCapture />
+
+        <header className="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md sticky top-0 z-50">
+          <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link href="/">
+                <a className="text-xl font-bold tracking-tighter italic">
+                  MATCH<span className="text-brand-pulse">PULSE</span>.PRO
+                </a>
+              </Link>
+              <PulseIndicator />
+            </div>
+            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+              <Link href="/nba"><a className="hover:text-brand-pulse transition-colors">NBA</a></Link>
+              <Link href="/world-cup"><a className="hover:text-brand-pulse transition-colors">WORLD CUP</a></Link>
+              <Link href="/insights"><a className="hover:text-brand-pulse transition-colors">AI INSIGHTS</a></Link>
+            </div>
+            <div>
+              <button className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-pulse transition-all">
+                PRO ACCESS
+              </button>
+            </div>
+          </nav>
+        </header>
 
         {children}
 
