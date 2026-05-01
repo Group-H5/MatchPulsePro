@@ -5,29 +5,36 @@ import path from 'path';
 // Writes public/sitemap.xml with xhtml:link alternates for en (default), pl, ko.
 
 const SITE_URL = process.env.SITE_URL || 'https://matchpulse.pro';
+const CORE_STATIC_MATCH_SLUGS = ['world-cup-2026-opener'];
+const HOT_MATCH_SLUGS = [
+  'knicks-vs-hawks',
+  'celtics-vs-76ers',
+  'lakers-vs-warriors',
+  'poland-vs-argentina',
+  'south-korea-vs-brazil',
+  'england-vs-france',
+];
 
 function getHotMatches() {
-  const now = new Date();
-  return [
-    'knicks-vs-hawks',
-    'celtics-vs-76ers',
-    'lakers-vs-warriors',
-    'poland-vs-argentina',
-    'south-korea-vs-brazil',
-    'england-vs-france',
-    'world-cup-2026-opener',
-  ];
+  return [...CORE_STATIC_MATCH_SLUGS, ...HOT_MATCH_SLUGS];
 }
 
 function buildUrlEntries(slugs) {
-  const locales = [{ code: 'en', prefix: '' }, { code: 'pl', prefix: '/pl' }, { code: 'ko', prefix: '/ko' }];
+  const locales = [
+    { code: 'en', prefix: '' },
+    { code: 'pl', prefix: '/pl' },
+    { code: 'ko', prefix: '/ko' },
+  ];
   const lastmod = new Date().toISOString();
 
   return slugs
     .map((slug) => {
       const defaultLoc = `${SITE_URL}/matches/${slug}`;
       const alternates = locales
-        .map((l) => `<xhtml:link rel="alternate" hreflang="${l.code}" href="${SITE_URL}${l.prefix}/matches/${slug}"/>`)
+        .map(
+          (l) =>
+            `<xhtml:link rel="alternate" hreflang="${l.code}" href="${SITE_URL}${l.prefix}/matches/${slug}"/>`
+        )
         .join('\n      ');
 
       return `  <url>\n    <loc>${defaultLoc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    ${alternates}\n  </url>`;

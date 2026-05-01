@@ -9,6 +9,19 @@ const intlMiddleware = createIntlMiddleware(routing);
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (pathname.startsWith('/matches')) {
+    const response = NextResponse.next();
+    response.headers.set('x-pathname', request.nextUrl.pathname);
+    response.headers.set('x-url', request.url);
+
+    const cacheControl = 'public, s-maxage=3600, stale-while-revalidate=14400';
+    response.headers.set('Cache-Control', cacheControl);
+    response.headers.set('CDN-Cache-Control', cacheControl);
+    response.headers.set('Cloudflare-CDN-Cache-Control', cacheControl);
+
+    return response;
+  }
+
   // Handle internationalization first
   const intlResponse = intlMiddleware(request);
 
