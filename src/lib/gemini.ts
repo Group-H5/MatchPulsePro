@@ -5,13 +5,12 @@ export async function generateMatchInsight(
 ) {
   const lang = options?.lang || 'en';
 
-  // build prompt (target <= 200 chars)
-  let prompt = `You are a professional sports analyst. Provide a concise (<=200 chars) preview for the match between ${matchData.home} and ${matchData.away} in the ${matchData.league || 'league'}. Include two points: 1) brief betting/odds movement insight; 2) key matchup or player to watch. Use a neutral, professional tone.`;
+  let prompt = `You are a senior NBA data expert and betting-market analyst. Write a concise NBA Playoffs preview for ${matchData.home} vs ${matchData.away}. Must cover: Key Matchups, injury impact, and a tactical prediction for playoff intensity. Keep it sharp, credible, and SEO-friendly.`;
   if (lang && lang !== 'en') {
-    prompt += ` Generate output in ${lang}.`;
+    prompt += ` Generate output in ${lang}; for pl and ko, use natural local basketball terminology rather than literal translation.`;
   }
 
-  const previewFallback = `Preview: ${matchData.home} vs ${matchData.away} — ${matchData.status}. Key player: ${matchData.topPlayer || 'TBD'}. Edge: Balanced.`;
+  const previewFallback = `NBA Playoffs: ${matchData.home} vs ${matchData.away}. Key matchup: ${matchData.topPlayer || 'TBD'}. Injury depth and half-court execution shape the edge.`;
 
   // If GEMINI_API_KEY present, call external API
   if (process.env.GEMINI_API_KEY) {

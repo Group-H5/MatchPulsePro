@@ -128,9 +128,9 @@ async function main() {
   await checkPulseDetect();
   await checkUrl('/sitemap.xml', {
     contentType: 'xml',
-    includes: [/<xhtml:link\b/i, /\/matches\/world-cup-2026-opener/i],
+    includes: [/<xhtml:link\b/i, /\/matches\/lakers-vs-nuggets/i],
   });
-  await checkUrl('/matches/world-cup-2026-opener', {
+  await checkUrl('/matches/lakers-vs-nuggets', {
     contentType: 'html',
     ldJson: true,
   });

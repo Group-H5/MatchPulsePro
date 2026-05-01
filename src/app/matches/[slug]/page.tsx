@@ -1,5 +1,6 @@
 import React from 'react';
 import { cookies, headers } from 'next/headers';
+import Link from 'next/link';
 import { generateMatchInsight } from '@/lib/gemini';
 import { fetchMatchDataBySlug } from '@/lib/sportsApi';
 
@@ -36,9 +37,9 @@ async function detectRequestLang(searchParams?: {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const slug = params.slug;
+  const { slug } = await params;
   const matchData = await fetchMatchDataBySlug(slug);
   const title = `${matchData.home} vs ${matchData.away} Live - MatchPulse`;
   const description = `Live updates and AI insights for ${matchData.home} vs ${matchData.away}. Real-time scores, stats and watching guide.`;
@@ -57,21 +58,46 @@ export default async function MatchPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] };
+  params: Promise<{ slug: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] }>;
 }) {
-  const { slug } = params;
-  const lang = await detectRequestLang(searchParams);
+  const { slug } = await params;
+  const resolvedSearchParams = await searchParams;
+  const lang = await detectRequestLang(resolvedSearchParams);
   const matchData = await fetchMatchDataBySlug(slug);
+
+  if (matchData.isFallback) {
+    return (
+      <div className="container py-16">
+        <div className="bg-brand-surface mx-auto max-w-2xl rounded-2xl border border-white/10 p-8 text-center">
+          <p className="text-brand-pulse text-sm font-bold tracking-[0.3em] uppercase">
+            Loading match data...
+          </p>
+          <h1 className="mt-4 text-3xl font-black">
+            Match pulse is warming up
+          </h1>
+          <p className="mt-4 text-gray-300">
+            This NBA playoff matchup is not in the current live slate yet. Use
+            the NBA hub to open verified match pages.
+          </p>
+          <Link
+            href="/nba"
+            className="bg-brand-pulse mt-6 inline-flex rounded-full px-6 py-3 text-sm font-bold text-black"
+          >
+            Back to NBA hub
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const insight =
     matchData.staticInsight?.[lang] ||
     matchData.staticInsight?.en ||
     (await generateMatchInsight(slug, matchData, { lang }));
   const location = matchData.location
     ? { '@type': 'Place', name: matchData.location }
-    : matchData.slug.includes('world-cup')
-      ? { '@type': 'Place', name: '2026 FIFA World Cup host cities' }
-      : undefined;
+    : undefined;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SportsEvent',

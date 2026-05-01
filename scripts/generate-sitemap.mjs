@@ -1,22 +1,21 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-// Simple sitemap generator — uses the same mock set as getHotMatches.
+// Simple sitemap generator for current NBA playoff match pages.
 // Writes public/sitemap.xml with xhtml:link alternates for en (default), pl, ko.
 
 const SITE_URL = process.env.SITE_URL || 'https://matchpulse.pro';
-const CORE_STATIC_MATCH_SLUGS = ['world-cup-2026-opener'];
-const HOT_MATCH_SLUGS = [
-  'knicks-vs-hawks',
+const NBA_PLAYOFF_SLUGS = [
+  'lakers-vs-nuggets',
   'celtics-vs-76ers',
-  'lakers-vs-warriors',
-  'poland-vs-argentina',
-  'south-korea-vs-brazil',
-  'england-vs-france',
+  'suns-vs-timberwolves',
+  'thunder-vs-mavericks',
+  'knicks-vs-76ers',
+  'bucks-vs-pacers',
 ];
 
 function getHotMatches() {
-  return [...CORE_STATIC_MATCH_SLUGS, ...HOT_MATCH_SLUGS];
+  return NBA_PLAYOFF_SLUGS;
 }
 
 function buildUrlEntries(slugs) {

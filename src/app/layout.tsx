@@ -1,12 +1,12 @@
 import '@/config/style/global.css';
 
 import { JetBrains_Mono, Merriweather, Noto_Sans_Mono } from 'next/font/google';
+import Link from 'next/link';
+import PulseIndicator from '@/components/PulseIndicator';
 import { getLocale, setRequestLocale } from 'next-intl/server';
 import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
-import Link from 'next/link';
-import PulseIndicator from '@/components/PulseIndicator';
 import { locales } from '@/config/locale';
 import { UtmCapture } from '@/shared/blocks/common/utm-capture';
 import { getAllConfigs } from '@/shared/models/config';
@@ -111,8 +111,14 @@ export default async function RootLayout({
     >
       <head>
         <title>MatchPulse.pro | AI-Powered Real-time Sports Insights</title>
-        <meta name="description" content="Experience the pulse of the game. Real-time NBA & World Cup 2026 insights driven by advanced AI logic." />
-        <meta name="keywords" content="NBA live, World Cup 2026, AI Sports Prediction, MatchPulse, Live Scores" />
+        <meta
+          name="description"
+          content="Experience the pulse of the NBA playoffs with real-time matchup insights driven by advanced AI logic."
+        />
+        <meta
+          name="keywords"
+          content="NBA playoffs live, Lakers Nuggets analysis, Celtics Heat prediction, NBA AI insights, MatchPulse, Live Scores"
+        />
         <link rel="icon" href={envConfigs.app_favicon} />
         <link rel="alternate icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -151,7 +157,10 @@ export default async function RootLayout({
         {/* inject customer service head scripts */}
         {customerServiceHeadScripts}
       </head>
-      <body suppressHydrationWarning className="overflow-x-hidden bg-brand-dark text-gray-100 antialiased">
+      <body
+        suppressHydrationWarning
+        className="bg-brand-dark overflow-x-hidden text-gray-100 antialiased"
+      >
         <NextTopLoader
           color="#6466F1"
           initialPosition={0.08}
@@ -165,21 +174,39 @@ export default async function RootLayout({
 
         <UtmCapture />
 
-        <header className="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md sticky top-0 z-50">
-          <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <header className="bg-brand-dark/80 sticky top-0 z-50 border-b border-white/5 backdrop-blur-md">
+          <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
             <div className="flex items-center gap-4">
-              <Link href="/" className="text-xl font-bold tracking-tighter italic">
+              <Link
+                href="/"
+                className="text-xl font-bold tracking-tighter italic"
+              >
                 MATCH<span className="text-brand-pulse">PULSE</span>.PRO
               </Link>
               <PulseIndicator />
             </div>
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-              <Link href="/nba" className="hover:text-brand-pulse transition-colors">NBA</Link>
-              <Link href="/world-cup" className="hover:text-brand-pulse transition-colors">WORLD CUP</Link>
-              <Link href="/insights" className="hover:text-brand-pulse transition-colors">AI INSIGHTS</Link>
+            <div className="hidden items-center gap-8 text-sm font-medium text-gray-400 md:flex">
+              <Link
+                href="/nba"
+                className="hover:text-brand-pulse transition-colors"
+              >
+                NBA PLAYOFFS
+              </Link>
+              <Link
+                href="/matches/lakers-vs-nuggets"
+                className="hover:text-brand-pulse transition-colors"
+              >
+                LAKERS VS NUGGETS
+              </Link>
+              <Link
+                href="/insights"
+                className="hover:text-brand-pulse transition-colors"
+              >
+                AI INSIGHTS
+              </Link>
             </div>
             <div>
-              <button className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-pulse transition-all">
+              <button className="hover:bg-brand-pulse rounded-full bg-white px-4 py-2 text-xs font-bold text-black transition-all">
                 PRO ACCESS
               </button>
             </div>

@@ -16,11 +16,7 @@ export function generateMetadata() {
 }
 
 export default async function NbaPage() {
-  const matches = (await getHotMatches()).filter((match) =>
-    ['knicks-vs-hawks', 'celtics-vs-76ers', 'lakers-vs-warriors'].includes(
-      match.slug
-    )
-  );
+  const matches = await getHotMatches();
 
   return (
     <main className="container py-12">
@@ -32,8 +28,8 @@ export default async function NbaPage() {
           AI-powered NBA previews before the market moves.
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-300">
-          Follow the highest-signal NBA matchups with concise AI insight, player
-          focus, venue context and live-score ready pages.
+          Follow the highest-signal NBA playoff matchups with concise AI
+          insight, player focus, injury context and live-score ready pages.
         </p>
       </section>
 

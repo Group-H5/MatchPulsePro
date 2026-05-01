@@ -21,7 +21,7 @@ const insightBlocks = [
   },
   {
     title: 'Static data for cornerstone pages',
-    body: 'Core traffic pages such as the World Cup 2026 opener use hand-curated data before any external sports API fallback.',
+    body: 'Core NBA playoff pages use hand-curated matchup data before any external sports API fallback.',
   },
   {
     title: 'Deployment self-checks',
@@ -60,8 +60,8 @@ export default function InsightsPage() {
       <section className="border-brand-pulse/40 bg-brand-pulse/10 mx-auto mt-10 max-w-5xl rounded-3xl border p-6">
         <h2 className="text-2xl font-bold">Start from the live pages</h2>
         <p className="mt-3 max-w-2xl text-gray-300">
-          Open NBA or World Cup pages to see the same logic applied to real
-          match landing pages.
+          Open the NBA playoff hub to see the same logic applied to real match
+          landing pages.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
@@ -71,10 +71,10 @@ export default function InsightsPage() {
             NBA Pulse
           </Link>
           <Link
-            href="/world-cup"
+            href="/matches/lakers-vs-nuggets"
             className="rounded-full border border-white/20 px-5 py-3 text-sm font-bold text-white"
           >
-            World Cup Pulse
+            Lakers vs Nuggets
           </Link>
         </div>
       </section>

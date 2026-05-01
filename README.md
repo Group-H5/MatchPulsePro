@@ -4,7 +4,8 @@
 
 ## 项目简介
 
-MatchPulse.pro 是基于 ShipAny 模板的轻量级体育资讯站（AI 预热 + 实时数据管线）。当前仓库包含：
+MatchPulse.pro 是基于 ShipAny 模板的 NBA 季后赛资讯站（AI 预热 + 实时数据管线）。当前仓库包含：
+
 - 多语言友好的页面与 JSON-LD（SportsEvent）结构化数据
 - AI Insight 生成入口（通过 `GEMINI_API_KEY` 启用）
 - 可切换的体育数据提供器（`mock` / `rapidapi`）与本地文件缓存回退
@@ -34,8 +35,9 @@ pnpm dev
 ```
 
 页面示例：
-- 揭幕战预热页： `/matches/world-cup-2026-opener`
-- 单场页面： `/matches/:slug`（如 `/matches/knicks-vs-hawks`）
+
+- NBA 季后赛首页： `/nba`
+- 单场页面： `/matches/:slug`（如 `/matches/lakers-vs-nuggets`）
 
 ## 生成 Sitemap
 
@@ -78,6 +80,7 @@ pnpm build
 ## 联系与扩展
 
 如需我帮忙接入 RapidAPI、配置 Gemini Key，或添加广告/变现位（UTM + Affiliate），随时告诉我。
+
 # ShipAny Template Two
 
 ## Getting Started
