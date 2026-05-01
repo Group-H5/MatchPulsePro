@@ -10,7 +10,10 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const matchPulsePublicPaths = ['/matches', '/nba', '/insights'];
-  if (matchPulsePublicPaths.some((path) => pathname.startsWith(path))) {
+  if (
+    pathname === '/' ||
+    matchPulsePublicPaths.some((path) => pathname.startsWith(path))
+  ) {
     const response = NextResponse.next();
     response.headers.set('x-pathname', request.nextUrl.pathname);
     response.headers.set('x-url', request.url);
