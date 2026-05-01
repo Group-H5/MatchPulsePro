@@ -1,11 +1,27 @@
 import React from 'react';
+
+export const runtime = 'edge';
+
+export default function WorldCupOpener() {
+  return (
+    <main className="max-w-4xl mx-auto py-16 px-4">
+      <h1 className="text-3xl font-bold">World Cup 2026 Opener</h1>
+      <p className="mt-4 text-gray-300">Preview and live updates for the 2026 World Cup opener. Stay tuned for AI-driven insights and real-time score tracking.</p>
+    </main>
+  );
+}
+import React from 'react';
 export const revalidate = 0;
 
 export function generateMetadata() {
+  const base = process.env.SITE_URL || 'https://matchpulse.pro';
   return {
     title: 'World Cup 2026 Opening Match Prediction | MatchPulse.pro',
     description: 'AI-powered preview and prediction for the World Cup 2026 opening match at Estadio Azteca. Live score, analysis and broadcast guide.',
     keywords: ['World Cup 2026 Opening Match Prediction', 'Live Score', 'AI Analysis', 'Estadio Azteca'],
+    alternates: {
+      canonical: `${base}/matches/world-cup-2026-opener`,
+    },
   };
 }
 

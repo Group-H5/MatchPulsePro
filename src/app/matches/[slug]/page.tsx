@@ -49,15 +49,25 @@ export default async function MatchPage({ params, searchParams }: { params: { sl
         </section>
       </div>
       {/* JSON-LD for SportsEvent */}
-      <script type="application/ld+json">{JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'SportsEvent',
-        name: `${matchData.home} vs ${matchData.away}`,
-        startDate: matchData.kickoff,
-        location: matchData.slug && matchData.slug.includes('world-cup') ? '2026 FIFA World Cup host cities' : '',
-        homeTeam: { '@type': 'SportsTeam', name: matchData.home },
-        awayTeam: { '@type': 'SportsTeam', name: matchData.away },
-      })}</script>
+      <script type="application/ld+json">{JSON.stringify(() => {
+        const location = matchData.location
+          ? { '@type': 'Place', name: matchData.location }
+          : matchData.slug && matchData.slug.includes('world-cup')
+          ? { '@type': 'Place', name: '2026 FIFA World Cup host cities' }
+          : undefined;
+
+        const ld: any = {
+          '@context': 'https://schema.org',
+          '@type': 'SportsEvent',
+          name: `${matchData.home} vs ${matchData.away}`,
+          startDate: matchData.kickoff,
+          homeTeam: { '@type': 'SportsTeam', name: matchData.home },
+          awayTeam: { '@type': 'SportsTeam', name: matchData.away },
+        };
+
+        if (location) ld.location = location;
+        return ld;
+      }()}</script>
     </div>
   );
 }

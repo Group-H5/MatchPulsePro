@@ -168,17 +168,15 @@ export default async function RootLayout({
         <header className="border-b border-white/5 bg-brand-dark/80 backdrop-blur-md sticky top-0 z-50">
           <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/">
-                <a className="text-xl font-bold tracking-tighter italic">
-                  MATCH<span className="text-brand-pulse">PULSE</span>.PRO
-                </a>
+              <Link href="/" className="text-xl font-bold tracking-tighter italic">
+                MATCH<span className="text-brand-pulse">PULSE</span>.PRO
               </Link>
               <PulseIndicator />
             </div>
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-              <Link href="/nba"><a className="hover:text-brand-pulse transition-colors">NBA</a></Link>
-              <Link href="/world-cup"><a className="hover:text-brand-pulse transition-colors">WORLD CUP</a></Link>
-              <Link href="/insights"><a className="hover:text-brand-pulse transition-colors">AI INSIGHTS</a></Link>
+              <Link href="/nba" className="hover:text-brand-pulse transition-colors">NBA</Link>
+              <Link href="/world-cup" className="hover:text-brand-pulse transition-colors">WORLD CUP</Link>
+              <Link href="/insights" className="hover:text-brand-pulse transition-colors">AI INSIGHTS</Link>
             </div>
             <div>
               <button className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-pulse transition-all">

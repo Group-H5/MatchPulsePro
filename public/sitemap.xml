@@ -1,15 +1,52 @@
-<?xml version='1.0' encoding='utf-8' standalone='yes'?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://your-domain.com/</loc>
-    <lastmod>2025-11-15T10:00:00+00:00</lastmod>
+    <loc>https://matchpulse.pro/matches/knicks-vs-hawks</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/knicks-vs-hawks"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/knicks-vs-hawks"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/knicks-vs-hawks"/>
   </url>
   <url>
-    <loc>https://your-domain.com/blog</loc>
-    <lastmod>2025-11-15T10:00:00+00:00</lastmod>
+    <loc>https://matchpulse.pro/matches/celtics-vs-76ers</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/celtics-vs-76ers"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/celtics-vs-76ers"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/celtics-vs-76ers"/>
   </url>
   <url>
-    <loc>https://your-domain.com/showcases</loc>
-    <lastmod>2025-11-15T10:00:00+00:00</lastmod>
+    <loc>https://matchpulse.pro/matches/lakers-vs-warriors</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/lakers-vs-warriors"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/lakers-vs-warriors"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/lakers-vs-warriors"/>
+  </url>
+  <url>
+    <loc>https://matchpulse.pro/matches/poland-vs-argentina</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/poland-vs-argentina"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/poland-vs-argentina"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/poland-vs-argentina"/>
+  </url>
+  <url>
+    <loc>https://matchpulse.pro/matches/south-korea-vs-brazil</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/south-korea-vs-brazil"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/south-korea-vs-brazil"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/south-korea-vs-brazil"/>
+  </url>
+  <url>
+    <loc>https://matchpulse.pro/matches/england-vs-france</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/england-vs-france"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/england-vs-france"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/england-vs-france"/>
+  </url>
+  <url>
+    <loc>https://matchpulse.pro/matches/world-cup-2026-opener</loc>
+    <lastmod>2026-05-01T04:18:13.629Z</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://matchpulse.pro/matches/world-cup-2026-opener"/>
+      <xhtml:link rel="alternate" hreflang="pl" href="https://matchpulse.pro/pl/matches/world-cup-2026-opener"/>
+      <xhtml:link rel="alternate" hreflang="ko" href="https://matchpulse.pro/ko/matches/world-cup-2026-opener"/>
   </url>
 </urlset>

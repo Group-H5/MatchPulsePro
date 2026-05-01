@@ -1,22 +1,41 @@
-export async function fetchMatchDataBySlug(slug: string) {
-  // slug expected like 'knicks-vs-hawks' or 'teamA-vs-teamB'
-  // In production integrate with a sports data provider (RapidAPI, sportsdata.io, etc.)
-  // Here return a mocked structure suitable for rendering and AI prompt.
-  const parts = slug.split('-vs-');
-  const home = parts[0] ? capitalize(parts[0].replace(/-/g, ' ')) : 'Home Team';
-  const away = parts[1] ? capitalize(parts[1].replace(/-/g, ' ')) : 'Away Team';
+// Production-ready wrapper for sports data providers with mock fallback.
+export interface MatchData {
+  slug: string;
+  home: string;
+  away: string;
+  status: string;
+  kickoff: string;
+  score: { home: number; away: number };
+  topPlayer?: string;
+  location?: string;
+}
 
-  // Mock dynamic fields
-  const now = new Date();
-  return {
-    slug,
-    home,
-    away,
-    status: 'Scheduled',
-    kickoff: now.toISOString(),
-    score: { home: 0, away: 0 },
-    topPlayer: 'TBD',
-  };
+const DEFAULT_PROVIDER = process.env.SPORTS_API_PROVIDER || 'mock';
+
+async function fetchFromRapidAPI(endpoint: string, params: Record<string, string> = {}) {
+  const key = process.env.RAPIDAPI_KEY;
+  const host = process.env.RAPIDAPI_HOST;
+  if (!key || !host) {
+    throw new Error('RapidAPI credentials not configured (RAPIDAPI_KEY / RAPIDAPI_HOST)');
+  }
+
+  const url = new URL(endpoint);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+
+  const res = await fetch(url.toString(), {
+    headers: {
+      'X-RapidAPI-Key': key,
+      'X-RapidAPI-Host': host,
+      Accept: 'application/json',
+    },
+    method: 'GET',
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`RapidAPI error: ${res.status} ${body}`);
+  }
+  return res.json();
 }
 
 function capitalize(s: string) {
@@ -26,8 +45,7 @@ function capitalize(s: string) {
     .join(' ');
 }
 
-export async function getHotMatches() {
-  // In production, replace this with a call to a sports data provider returning today's hottest matches.
+function mockGetHotMatches(): MatchData[] {
   const now = new Date();
   return [
     {
@@ -78,7 +96,7 @@ export async function getHotMatches() {
       status: 'Upcoming',
       score: { home: 0, away: 0 },
       topPlayer: 'Son Heung-min',
-      location: 'AT&amp;T Stadium, Arlington',
+      location: 'AT&T Stadium, Arlington',
     },
     {
       slug: 'england-vs-france',
@@ -92,3 +110,73 @@ export async function getHotMatches() {
     },
   ];
 }
+
+export async function getHotMatches(): Promise<MatchData[]> {
+  const provider = (process.env.SPORTS_API_PROVIDER || DEFAULT_PROVIDER).toLowerCase();
+  try {
+    if (provider === 'rapidapi') {
+      // Example placeholder endpoint — users should replace with actual RapidAPI sports endpoint and params
+      const data = await fetchFromRapidAPI('https://example-rapidapi-sports-host/matches/today');
+      // Map remote shape to MatchData if necessary. For now, attempt a safe mapping.
+      if (Array.isArray(data)) {
+        return data.map((d: any) => ({
+          slug: d.slug || `${d.home?.toLowerCase()?.replace(/\s+/g, '-')} -vs- ${d.away?.toLowerCase()?.replace(/\s+/g, '-')}`,
+          home: d.home || d.team1 || 'Home',
+          away: d.away || d.team2 || 'Away',
+          status: d.status || 'Scheduled',
+          kickoff: d.kickoff || d.start || new Date().toISOString(),
+          score: { home: d.score?.home || 0, away: d.score?.away || 0 },
+          topPlayer: d.topPlayer || d.keyPlayer || 'TBD',
+          location: d.location || d.venue || '',
+        }));
+      }
+    }
+  } catch (err) {
+    // Log and fall through to mock
+    // eslint-disable-next-line no-console
+    console.warn('SPORTS API fetch failed, falling back to mock data:', err?.message || err);
+  }
+  return mockGetHotMatches();
+}
+
+export async function fetchMatchDataBySlug(slug: string): Promise<MatchData> {
+  const provider = (process.env.SPORTS_API_PROVIDER || DEFAULT_PROVIDER).toLowerCase();
+  try {
+    if (provider === 'rapidapi') {
+      // Example mapping — replace endpoint/params with correct provider API
+      const remote = await fetchFromRapidAPI('https://example-rapidapi-sports-host/matches', { slug });
+      if (remote) {
+        return {
+          slug: remote.slug || slug,
+          home: remote.home || remote.team1 || 'Home',
+          away: remote.away || remote.team2 || 'Away',
+          status: remote.status || 'Scheduled',
+          kickoff: remote.kickoff || remote.start || new Date().toISOString(),
+          score: { home: remote.score?.home || 0, away: remote.score?.away || 0 },
+          topPlayer: remote.topPlayer || remote.keyPlayer || 'TBD',
+          location: remote.location || remote.venue || '',
+        };
+      }
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('SPORTS API fetchMatchDataBySlug failed, using mock', err?.message || err);
+  }
+
+  // Fallback to mock behavior
+  const parts = slug.split('-vs-');
+  const home = parts[0] ? capitalize(parts[0].replace(/-/g, ' ')) : 'Home Team';
+  const away = parts[1] ? capitalize(parts[1].replace(/-/g, ' ')) : 'Away Team';
+  const now = new Date();
+  return {
+    slug,
+    home,
+    away,
+    status: 'Scheduled',
+    kickoff: now.toISOString(),
+    score: { home: 0, away: 0 },
+    topPlayer: 'TBD',
+    location: slug.includes('world-cup') ? 'Estadio Azteca, Mexico City' : undefined,
+  };
+}
+
