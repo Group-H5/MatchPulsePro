@@ -12,7 +12,7 @@ const config: Config = {
         black: '950',
       },
       colors: {
-        'brand-gray': '#080808',
+        'brand-gray': '#050505',
         brand: {
           dark: '#0A0A0B',
           surface: '#161618',

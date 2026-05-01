@@ -8,29 +8,30 @@ export default async function HomePage() {
 
   return (
     <main className="bg-brand-gray relative min-h-screen overflow-hidden text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(0,255,127,0.18),transparent_28%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.12),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.08)_0_1px,transparent_1px_46px)]" />
-      <div className="pointer-events-none absolute inset-y-0 right-[-8vw] hidden w-[56vw] opacity-15 grayscale md:block">
-        <div className="animate-float absolute top-28 right-[18%] h-[540px] w-[240px] -rotate-12 rounded-t-full bg-white/70 blur-[1px]" />
-        <div className="animate-float absolute top-[310px] right-[7%] h-[220px] w-[420px] -rotate-[22deg] rounded-full bg-white/60 blur-[1px]" />
-        <div className="animate-float absolute top-[610px] right-[28%] h-[260px] w-[90px] rotate-6 rounded-full bg-white/70 blur-[1px]" />
-        <div className="animate-float absolute top-[600px] right-[13%] h-[300px] w-[90px] -rotate-12 rounded-full bg-white/70 blur-[1px]" />
-        <div className="absolute top-12 right-[24%] h-32 w-32 rounded-full bg-white/80" />
-        <div className="absolute top-24 right-[2%] h-24 w-24 rounded-full border-[10px] border-white/70" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_6%,rgba(30,64,175,0.28),transparent_22%),radial-gradient(circle_at_88%_12%,rgba(88,28,135,0.22),transparent_24%),radial-gradient(circle_at_50%_100%,rgba(0,255,127,0.08),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.035)_0_1px,transparent_1px_52px)]" />
+      <div className="pointer-events-none absolute inset-0 bg-black/35" />
+      <div className="pointer-events-none absolute inset-y-0 right-[-8vw] hidden w-[56vw] opacity-[0.08] grayscale md:block">
+        <div className="animate-float absolute top-28 right-[18%] h-[540px] w-[240px] -rotate-12 rounded-t-full bg-gray-300 blur-[1px]" />
+        <div className="animate-float absolute top-[310px] right-[7%] h-[220px] w-[420px] -rotate-[22deg] rounded-full bg-gray-400 blur-[1px]" />
+        <div className="animate-float absolute top-[610px] right-[28%] h-[260px] w-[90px] rotate-6 rounded-full bg-gray-300 blur-[1px]" />
+        <div className="animate-float absolute top-[600px] right-[13%] h-[300px] w-[90px] -rotate-12 rounded-full bg-gray-300 blur-[1px]" />
+        <div className="absolute top-12 right-[24%] h-32 w-32 rounded-full bg-gray-200" />
+        <div className="absolute top-24 right-[2%] h-24 w-24 rounded-full border-[10px] border-gray-300" />
       </div>
 
       <section className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-[1.08fr_0.92fr] md:px-8">
         <div>
-          <div className="text-brand-pulse mb-6 inline-flex items-center gap-3 border border-white/15 bg-white/5 px-4 py-2 text-xs font-black tracking-[0.35em] uppercase backdrop-blur">
+          <div className="text-brand-pulse mb-6 inline-flex items-center gap-3 border border-white/15 bg-white/5 px-4 py-2 text-xs font-black tracking-[0.35em] uppercase backdrop-blur-lg">
             <span className="bg-brand-pulse h-2 w-2 rounded-full shadow-[0_0_20px_#00FF7F]" />
             Live Pulse
           </div>
 
-          <h1 className="font-display text-7xl leading-[0.82] font-black tracking-[-0.08em] uppercase italic md:text-[120px]">
+          <h1 className="font-display text-7xl leading-[0.82] font-black tracking-[-0.08em] text-white uppercase italic md:text-[120px]">
             NBA
             <br />
             Playoffs
             <br />
-            <span className="text-transparent [-webkit-text-stroke:2px_#00FF7F]">
+            <span className="text-[#00FF7F] drop-shadow-[0_0_22px_rgba(0,255,127,0.18)]">
               Pure
             </span>
             <br />
@@ -59,10 +60,10 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <aside className="relative rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
-          <div className="from-brand-pulse/30 absolute -inset-px rounded-[2rem] bg-gradient-to-br via-transparent to-cyan-400/20 opacity-70" />
+        <aside className="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/40 backdrop-blur-lg">
+          <div className="to-brand-pulse/10 absolute -inset-px rounded-[2rem] bg-gradient-to-br from-white/10 via-transparent opacity-70" />
           <div className="relative">
-            <p className="text-xs font-black tracking-[0.32em] text-gray-500 uppercase">
+            <p className="text-xs font-black tracking-[0.32em] text-gray-300 uppercase">
               Featured Line
             </p>
             <h2 className="mt-5 text-5xl leading-none font-black uppercase italic">
@@ -73,24 +74,24 @@ export default async function HomePage() {
             <div className="mt-8 grid grid-cols-3 gap-3 text-center">
               <div className="rounded-2xl bg-black/30 p-4">
                 <div className="text-3xl font-black">48</div>
-                <div className="text-[10px] font-bold tracking-widest text-gray-500 uppercase">
+                <div className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">
                   Minutes
                 </div>
               </div>
               <div className="rounded-2xl bg-black/30 p-4">
                 <div className="text-3xl font-black">7</div>
-                <div className="text-[10px] font-bold tracking-widest text-gray-500 uppercase">
+                <div className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">
                   Game Max
                 </div>
               </div>
               <div className="rounded-2xl bg-black/30 p-4">
                 <div className="text-3xl font-black">AI</div>
-                <div className="text-[10px] font-bold tracking-widest text-gray-500 uppercase">
+                <div className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">
                   Pulse
                 </div>
               </div>
             </div>
-            <p className="mt-6 text-sm leading-6 text-gray-400">
+            <p className="mt-6 text-sm leading-6 text-gray-300">
               {featureMatch.staticInsight?.en ||
                 `Key matchup: ${featureMatch.topPlayer || 'TBD'}`}
             </p>
@@ -108,7 +109,7 @@ export default async function HomePage() {
               Hot Playoff Matchups
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-6 text-gray-500">
+          <p className="max-w-md text-sm leading-6 text-gray-300">
             Every card links to a stable SEO-ready analysis page backed by
             curated NBA playoff data.
           </p>
